@@ -1,0 +1,70 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "{\"createdOn\":\"Mac\",\"createdBy\":\"Amplify\",\"createdWith\":\"8.0.2\",\"stackType\":\"custom-S3\",\"metadata\":{}}",
+  "Parameters": {
+    "customcloudfrontoaiS3CanonicalUserId": {
+      "Type": "String"
+    },
+    "env": {
+      "Type": "String"
+    },
+    "storagepollybucketBucketName": {
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "StorageBucketPolicy": {
+      "Type": "AWS::S3::BucketPolicy",
+      "Properties": {
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Sid": "CloudFrontAccess",
+              "Effect": "Allow",
+              "Principal": {
+                "CanonicalUser": {
+                  "Ref": "customcloudfrontoaiS3CanonicalUserId"
+                }
+              },
+              "Action": "s3:GetObject",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:aws:s3:::",
+                    {
+                      "Ref": "storagepollybucketBucketName"
+                    },
+                    "/websites/*"
+                  ]
+                ]
+              }
+            },
+            {
+              "Sid": "PublicReadAssets",
+              "Effect": "Allow",
+              "Principal": "*",
+              "Action": "s3:GetObject",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:aws:s3:::",
+                    {
+                      "Ref": "storagepollybucketBucketName"
+                    },
+                    "/public/assets/*"
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        "Bucket": {
+          "Ref": "storagepollybucketBucketName"
+        }
+      }
+    }
+  }
+}

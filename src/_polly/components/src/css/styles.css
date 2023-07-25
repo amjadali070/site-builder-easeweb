@@ -1,0 +1,24 @@
+/* TODO: somehow custom css need to be import first, or wont work */
+@import './custom.css';
+
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+.wrapper {
+  @apply container mx-auto;
+}
+
+.blocks {
+  @apply space-y-4 md:space-y-0 md:flex flex-wrap gap-4 my-4;
+}
+
+.md-blocks {
+  @apply hidden md:block;
+}
+
+.sm-blocks {
+  @apply block md:hidden px-4;
+}

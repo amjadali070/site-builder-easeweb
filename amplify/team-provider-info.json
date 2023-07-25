@@ -1,0 +1,61 @@
+{
+  "stage": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-pollywebapp-stage-02935-authRole",
+      "UnauthRoleArn": "arn:aws:iam::572533102877:role/amplify-pollywebapp-stage-02935-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::572533102877:role/amplify-pollywebapp-stage-02935-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-pollywebapp-stage-02935-deployment",
+      "UnauthRoleName": "amplify-pollywebapp-stage-02935-unauthRole",
+      "StackName": "amplify-pollywebapp-stage-02935",
+      "StackId": "arn:aws:cloudformation:us-east-2:572533102877:stack/amplify-pollywebapp-stage-02935/da2061a0-28aa-11ed-a781-023ee273dfde",
+      "AmplifyAppId": "d30zyboiwgk246"
+    },
+    "categories": {
+      "auth": {
+        "pollywebapp72368b97": {}
+      },
+      "function": {
+        "pollybundler": {
+          "deploymentBucketName": "amplify-pollywebapp-stage-02935-deployment",
+          "s3Key": "amplify-builds/pollybundler-306b6c5a715264524455-build.zip"
+        },
+        "pollywebapppollybundlerlib": {
+          "deploymentBucketName": "amplify-pollywebapp-stage-02935-deployment",
+          "s3Key": "amplify-builds/pollywebapppollybundlerlib-LambdaLayerVersion06a7902d-build.zip"
+        }
+      },
+      "storage": {
+        "pollybucket": {}
+      }
+    }
+  },
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-pollywebapp-dev-35612-authRole",
+      "UnauthRoleArn": "arn:aws:iam::572533102877:role/amplify-pollywebapp-dev-35612-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::572533102877:role/amplify-pollywebapp-dev-35612-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-pollywebapp-dev-35612-deployment",
+      "UnauthRoleName": "amplify-pollywebapp-dev-35612-unauthRole",
+      "StackName": "amplify-pollywebapp-dev-35612",
+      "StackId": "arn:aws:cloudformation:us-east-2:572533102877:stack/amplify-pollywebapp-dev-35612/a83c7b10-c44b-11ec-b3a5-0af2bb13849c",
+      "AmplifyAppId": "d30zyboiwgk246"
+    },
+    "categories": {
+      "auth": {
+        "pollywebapp72368b97": {}
+      },
+      "function": {
+        "pollybundler": {
+          "deploymentBucketName": "amplify-pollywebapp-dev-35612-deployment",
+          "s3Key": "amplify-builds/pollybundler-3157614c523776774842-build.zip"
+        },
+        "pollywebapppollybundlerlib": {
+          "deploymentBucketName": "amplify-pollywebapp-dev-35612-deployment",
+          "s3Key": "amplify-builds/pollywebapppollybundlerlib-LambdaLayerVersion3663ac3f-build.zip"
+        }
+      }
+    }
+  }
+}

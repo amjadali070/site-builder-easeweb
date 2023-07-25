@@ -1,0 +1,34 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "{\"createdOn\":\"Mac\",\"createdBy\":\"Amplify\",\"createdWith\":\"8.0.2\",\"stackType\":\"custom-CloudFront\",\"metadata\":{}}",
+  "Parameters": {
+    "env": {
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "CloudFrontOAI": {
+      "Type": "AWS::CloudFront::CloudFrontOriginAccessIdentity",
+      "Properties": {
+        "CloudFrontOriginAccessIdentityConfig": {
+          "Comment": "CloudFront OAI for Polly bundler lambda function"
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "ID": {
+      "Value": {
+        "Ref": "CloudFrontOAI"
+      }
+    },
+    "S3CanonicalUserId": {
+      "Value": {
+        "Fn::GetAtt": [
+          "CloudFrontOAI",
+          "S3CanonicalUserId"
+        ]
+      }
+    }
+  }
+}

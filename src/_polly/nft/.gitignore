@@ -1,0 +1,5 @@
+cache
+artifacts/*
+artifacts/contracts/**/*.dbg.json
+!artifacts/contracts
+.openzeppelin

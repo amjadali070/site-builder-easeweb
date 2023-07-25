@@ -1,0 +1,38 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "{\"createdOn\":\"Mac\",\"createdBy\":\"Amplify\",\"createdWith\":\"8.0.2\",\"stackType\":\"custom-Policy\",\"metadata\":{}}",
+  "Parameters": {
+    "authRoleName": {
+      "Type": "String"
+    },
+    "env": {
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "CloudFrontInvalidationPolicy": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "custom-cloudfront-invalidation-readonly",
+        "Roles": [
+          {
+            "Ref": "authRoleName"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "cloudfront:GetDistribution",
+                "cloudfront:GetInvalidation"
+              ],
+              "Resource": "*"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

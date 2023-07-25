@@ -1,0 +1,105 @@
+type S3Object {
+  bucket: String!
+  region: String!
+  key: String!
+}
+
+enum BuildStatus {
+  INPROGRESS
+  SUCCESS
+  FAILED
+}
+
+enum CATEGORY {
+  LEFT
+  RIGHT
+}
+
+enum ProductSatus {
+  INITIAL
+  SUCCESS
+  CANCEL
+}
+type UserProfile
+  @model
+  @auth(
+    rules: [
+      { allow: owner, ownerField: "id" }
+      { allow: private, operations: [read] }
+      { allow: public, provider: iam, operations: [create] }
+    ]
+  ) {
+  # @key(name: "byEmail", fields: ["email"], queryField: "appUserByEmail")
+  # corresponding to cognito user id
+  id: ID!
+  firstName: String!
+  lastName: String!
+  email: String!
+  profilePics: S3Object
+  # createdAt: String
+}
+
+type Website
+  @model
+  @auth(rules: [{ allow: owner, ownerField: "userID" }])
+  @key(name: "byUser", fields: ["userID", "createdAt"], queryField: "getWebsiteByUserID") {
+  id: ID!
+  name: String!
+  config: AWSJSON!
+  userID: ID!
+  createdAt: String!
+  # CloudFront specific
+  cloudfrontDistributionID: String
+  cloudfrontDomainName: String
+  menu: AWSJSON
+  footer: AWSJSON
+  pages: AWSJSON
+}
+
+type BuildRequest
+  @model
+  @auth(rules: [{ allow: owner, ownerField: "userID" }, { allow: private, provider: iam }])
+  @key(name: "byWebsite", fields: ["websiteID", "createdAt"], queryField: "getBuildRequestByWebsiteID") {
+  id: ID!
+  status: BuildStatus!
+  websiteID: ID!
+  createdAt: String!
+  userID: ID!
+
+  # CloudFront specific
+  cloudfrontInvalidationID: String
+}
+
+type Page
+  @model
+  @auth(rules: [{ allow: owner, ownerField: "userID" }])
+  @key(name: "byWebsite", fields: ["websiteID", "createdAt"], queryField: "getPageByWebsiteID") {
+  id: ID!
+  name: String!
+  path: String!
+  websiteID: ID!
+  blocks: AWSJSON! # Array
+  createdAt: String!
+  userID: ID!
+}
+
+type Block
+  @model
+  @auth(rules: [{ allow: owner, operations: [create, update, delete] }, { allow: private, operations: [read] }]) {
+  id: ID!
+  type: String!
+  props: AWSJSON!
+}
+
+type MintTransaction
+  @model
+  @auth(rules: [{ allow: owner, ownerField: "userID" }])
+  @key(name: "byUserID", fields: ["userID", "createdAt"], queryField: "getMintTransactionByUser") {
+  id: ID!
+  transactionHash: String!
+  from: String!
+  userID: ID!
+  blockID: ID!
+  block: Block @connection(fields: ["blockID"])
+  createdAt: String!
+}

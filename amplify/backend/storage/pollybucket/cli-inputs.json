@@ -1,0 +1,12 @@
+{
+  "resourceName": "pollybucket",
+  "bucketName": "polly",
+  "policyUUID": "8637b1cc",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ"
+  ],
+  "triggerFunction": "NONE"
+}

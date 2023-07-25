@@ -1,0 +1,45 @@
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes scale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+@keyframes slide {
+  from {
+    opacity: 0;
+    transform: translate(0%, 30%);
+  }
+}
+
+@keyframes flex {
+  from {
+    opacity: 0;
+    transform: translate(0%, 2vh);
+  }
+}
+
+/* animation slide */
+@keyframes clip {
+  0% {
+    -webkit-clip-path: polygon(0 0, 10% 0, 0% 100%, 0% 100%);
+    clip-path: polygon(0 0, 10% 0, 0% 100%, 0% 100%);
+  }
+
+  100% {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+}
+
+.animate {
+  animation-name: var(--theme-animation-name);
+  animation-duration: var(--theme-animation-duration);
+  animation-timing-function: ease;
+}

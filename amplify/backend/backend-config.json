@@ -1,0 +1,134 @@
+{
+  "auth": {
+    "pollywebapp72368b97": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "loginMechanisms": [],
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      }
+    }
+  },
+  "api": {
+    "pollyapi": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authpollywebapp72368b97"
+            }
+          },
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AWS_IAM"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "storage": {
+    "pollybucket": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": []
+    }
+  },
+  "hosting": {
+    "S3AndCloudFront": {
+      "service": "S3AndCloudFront",
+      "providerPlugin": "awscloudformation"
+    }
+  },
+  "custom": {
+    "bucketpolicy": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "pollybucket",
+          "attributes": [
+            "BucketName"
+          ]
+        },
+        {
+          "category": "custom",
+          "resourceName": "cloudfrontoai",
+          "attributes": [
+            "S3CanonicalUserId"
+          ]
+        }
+      ]
+    },
+    "cloudfrontoai": {
+      "service": "CloudFront",
+      "providerPlugin": "awscloudformation"
+    },
+    "policies": {
+      "service": "Policy",
+      "providerPlugin": "awscloudformation"
+    }
+  },
+  "function": {
+    "pollywebapppollybundlerlib": {
+      "providerPlugin": "awscloudformation",
+      "service": "LambdaLayer",
+      "build": true
+    },
+    "pollybundler": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "pollywebapppollybundlerlib",
+          "attributes": [
+            "Arn"
+          ]
+        },
+        {
+          "category": "api",
+          "resourceName": "pollyapi",
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "pollybucket",
+          "attributes": [
+            "BucketName"
+          ]
+        },
+        {
+          "category": "custom",
+          "resourceName": "cloudfrontoai",
+          "attributes": [
+            "ID"
+          ]
+        }
+      ]
+    }
+  }
+}

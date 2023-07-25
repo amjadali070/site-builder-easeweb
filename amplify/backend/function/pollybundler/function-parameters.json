@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "api": {
+      "pollyapi": [
+        "Query",
+        "Mutation"
+      ]
+    },
+    "storage": {
+      "pollybucket": [
+        "create",
+        "read",
+        "update"
+      ]
+    }
+  },
+  "lambdaLayers": [
+    {
+      "type": "ExternalLayer",
+      "arn": {
+        "Fn::Sub": "arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:layer:pollywebapppollybundlerlib-dev:29"
+      }
+    }
+  ]
+}

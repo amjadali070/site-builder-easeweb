@@ -1,0 +1,55 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "airbnb",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:import/recommended",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react", "react-hooks", "@typescript-eslint", "prettier"],
+  "rules": {
+    "@typescript-eslint/no-shadow": "error",
+    "import/extensions": ["error", "ignorePackages", { "ts": "never", "tsx": "never", "js": "never", "jsx": "never" }],
+    "import/no-unresolved": "off",
+    "import/no-relative-packages": "off",
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "no-duplicate-imports": "error",
+    "no-shadow": "off",
+    "quotes": ["error", "single"],
+    "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
+    "react/no-unstable-nested-components": ["off", { "allowAsProps": true }],
+    "react/react-in-jsx-scope": "off",
+    "react/require-default-props": "off",
+    "react/function-component-definition": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "react/jsx-props-no-spreading": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "react/no-array-index-key": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/interactive-supports-focus": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "no-restricted-syntax": "off",
+    "no-await-in-loop": "off",
+    "react/display-name": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
+  }
+}
